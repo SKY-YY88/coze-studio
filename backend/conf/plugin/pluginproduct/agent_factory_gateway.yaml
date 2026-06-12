@@ -1,0 +1,77 @@
+openapi: 3.0.1
+info:
+  title: Agent Factory Gateway
+  description: Governed access to Agent Factory MCP tools. All calls pass through Gateway policy, approval, audit, and idempotency checks.
+  version: v0.1.0
+servers:
+  - url: https://factory.applehappy.net
+paths:
+  /api/tools/invoke/{tool_name}:
+    post:
+      operationId: invoke_agent_factory_tool
+      summary: Invoke an Agent Factory governed tool
+      description: Invoke a tool through Agent Factory Gateway. High-risk calls may return approval_required instead of executing immediately.
+      parameters:
+        - name: tool_name
+          in: path
+          required: true
+          description: Tool name from Agent Factory contracts/mcp-tools.yaml, for example knowledge.search_policy or notify.send_email.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                arguments:
+                  type: object
+                  description: Tool-specific input arguments.
+                  additionalProperties: true
+                identity:
+                  type: object
+                  description: Optional identity context. Agent Factory may override this from trusted headers.
+                  additionalProperties: true
+                dry_run:
+                  type: boolean
+                  description: Whether the call should be treated as a dry run.
+                  default: true
+                idempotency_key:
+                  type: string
+                  description: Stable key for write tools to prevent duplicate side effects.
+              required:
+                - arguments
+      responses:
+        "200":
+          description: Gateway decision and optional tool result.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  decision:
+                    type: string
+                    enum:
+                      - allowed
+                      - approval_required
+                      - blocked
+                  tool_name:
+                    type: string
+                  result:
+                    type: object
+                    additionalProperties: true
+                  message:
+                    type: string
+                  approval_id:
+                    type: string
+                  status_url:
+                    type: string
+                  audit_id:
+                    type: string
+                  trace_id:
+                    type: string
+                required:
+                  - decision
+        default:
+          description: Gateway error response.
