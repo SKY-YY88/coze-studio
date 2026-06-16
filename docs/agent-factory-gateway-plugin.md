@@ -60,17 +60,21 @@ Body:
 
 ```json
 {
-  "arguments": {
-    "query": "CRM admin access policy"
-  },
-  "identity": {
-    "user_id": "coze-plugin",
-    "role": "operator"
-  },
+  "query": "CRM admin access policy",
+  "target_system": "crm",
+  "permission_type": "admin",
   "dry_run": true,
   "idempotency_key": "optional-stable-key"
 }
 ```
+
+Coze Studio's plugin editor may drop object-typed parameters that do not
+declare nested fields. For this PoC, the checked-in OpenAPI uses flat
+tool-specific fields instead of a single `arguments` object. Agent Factory's
+Gateway adapter still accepts both forms:
+
+- wrapped: `{"arguments": {...}}`
+- flat: `{"query": "...", "target_system": "..."}`
 
 ## Response Contract
 
@@ -123,18 +127,29 @@ The real execution is owned by Agent Factory after approval.
 
 ## First Test
 
-1. Import the Agent Factory Gateway plugin.
-2. Call:
+1. Start Agent Factory Gateway on the host and verify from `coze-server`:
+
+   ```bash
+   docker exec coze-server sh -lc "curl -sS http://host.docker.internal:8200/health"
+   ```
+
+2. Create/login to a Coze workspace at `http://127.0.0.1:8888`.
+3. Import the Agent Factory Gateway plugin.
+   If the full OpenAPI import path is slow in the local Docker image, use the
+   same flow as the UI: create plugin metadata first, then add/update the tool
+   API with `POST /api/plugin_api/register_plugin_meta`,
+   `POST /api/plugin_api/create_api`, and `POST /api/plugin_api/update_api`.
+4. Call:
 
    ```text
    knowledge.search_policy
    ```
 
-3. Confirm Agent Factory audit contains the tool call.
-4. Call a high-risk write tool such as:
+5. Confirm Agent Factory audit contains the tool call.
+6. Call a high-risk write tool such as:
 
    ```text
    notify.send_email
    ```
 
-5. Confirm Coze receives `approval_required` and no email is sent before approval.
+7. Confirm Coze receives `approval_required` and no email is sent before approval.

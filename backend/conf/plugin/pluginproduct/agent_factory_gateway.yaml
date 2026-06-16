@@ -25,14 +25,33 @@ paths:
             schema:
               type: object
               properties:
-                arguments:
-                  type: object
-                  description: Tool-specific input arguments.
-                  additionalProperties: true
-                identity:
-                  type: object
-                  description: Optional identity context. Agent Factory may override this from trusted headers.
-                  additionalProperties: true
+                query:
+                  type: string
+                  description: Search query or primary natural-language input for read tools.
+                target_system:
+                  type: string
+                  description: Target system for the governed action, for example crm.
+                permission_type:
+                  type: string
+                  description: Permission or action type, for example read or admin.
+                user_id:
+                  type: string
+                  description: Subject user id for permission or ticket tools.
+                category:
+                  type: string
+                  description: Ticket or request category.
+                title:
+                  type: string
+                  description: Ticket or action title.
+                description:
+                  type: string
+                  description: Detailed tool-specific description.
+                priority:
+                  type: string
+                  description: Optional priority value for ticket-style tools.
+                reason:
+                  type: string
+                  description: Optional business reason for the requested action.
                 dry_run:
                   type: boolean
                   description: Whether the call should be treated as a dry run.
@@ -40,8 +59,7 @@ paths:
                 idempotency_key:
                   type: string
                   description: Stable key for write tools to prevent duplicate side effects.
-              required:
-                - arguments
+              additionalProperties: true
       responses:
         "200":
           description: Gateway decision and optional tool result.
