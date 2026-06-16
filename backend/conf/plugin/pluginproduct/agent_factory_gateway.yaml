@@ -4,7 +4,7 @@ info:
   description: Governed access to Agent Factory MCP tools. All calls pass through Gateway policy, approval, audit, and idempotency checks.
   version: v0.1.0
 servers:
-  - url: https://factory.applehappy.net
+  - url: http://host.docker.internal:8200
 paths:
   /api/tools/invoke/{tool_name}:
     post:

@@ -11,6 +11,22 @@ Coze calls one Gateway endpoint:
 POST https://factory.applehappy.net/api/tools/invoke/{tool_name}
 ```
 
+For local PoC, choose the server URL based on how Coze Studio is running:
+
+| Coze Studio runtime | Plugin `servers[0].url` |
+|---|---|
+| Native process on the same Windows host | `http://127.0.0.1:8200` |
+| Docker container on Windows/macOS | `http://host.docker.internal:8200` |
+| Public test/prod Gateway | `https://factory.applehappy.net` |
+
+The checked-in PoC config currently uses:
+
+```text
+http://host.docker.internal:8200
+```
+
+because Coze Studio is commonly started from Docker during local evaluation.
+
 Agent Factory then handles:
 
 - tool contract lookup
@@ -122,4 +138,3 @@ The real execution is owned by Agent Factory after approval.
    ```
 
 5. Confirm Coze receives `approval_required` and no email is sent before approval.
-
