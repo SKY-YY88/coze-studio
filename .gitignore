@@ -60,3 +60,7 @@ values-dev.yaml
 
 *.tsbuildinfo
 .trae/*
+
+# Local coding-agent workspace state
+.codex/
+.serena/
