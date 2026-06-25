@@ -17,11 +17,6 @@
 import React from 'react';
 
 import classNames from 'classnames';
-import {
-  IconBrandCnWhiteRow,
-  IconBrandCnBlackRow,
-  IconBrandEnBlackRow,
-} from '@coze-arch/bot-icons';
 import { useNavigate } from 'react-router-dom';
 
 import styles from './index.module.less';
@@ -34,7 +29,6 @@ export interface CozeBrandProps {
 }
 
 export function CozeBrand({
-  isOversea,
   isWhite,
   className,
   style,
@@ -43,29 +37,19 @@ export function CozeBrand({
   const navBack = () => {
     navigate('/');
   };
-  if (isOversea) {
-    return (
-      <IconBrandEnBlackRow
-        onClick={navBack}
-        className={classNames(styles['coze-brand'], className)}
-        style={style}
-      />
-    );
-  }
-  if (isWhite) {
-    return (
-      <IconBrandCnWhiteRow
-        onClick={navBack}
-        className={classNames(styles['coze-brand'], className)}
-        style={style}
-      />
-    );
-  }
   return (
-    <IconBrandCnBlackRow
+    <button
+      type="button"
       onClick={navBack}
-      className={classNames(styles['coze-brand'], className)}
+      className={classNames(
+        styles['coze-brand'],
+        { [styles['coze-brand-white']]: isWhite },
+        className,
+      )}
       style={style}
-    />
+    >
+      <span className={styles['coze-brand-mark']}>KT</span>
+      <span className={styles['coze-brand-name']}>Kyber Tech</span>
+    </button>
   );
 }
