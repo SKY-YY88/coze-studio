@@ -5318,8 +5318,8 @@
                 "display_info": {
                     "name": "DeepSeek-R1·工具调用",
                     "description": {
-                        "zh_cn": "R1 functionCall 版本，支持在Single-Agent模式下调用各类扣子工具（插件、工作流、知识库等）。",
-                        "en_us": "DeepSeek-R1 functionCall version, which supports calling various Coze tools (plugins, workflows, knowledge bases, etc.) in Single-Agent mode."
+                        "zh_cn": "R1 functionCall 版本，支持在Single-Agent模式下调用各类Kyber Tech 工具（插件、工作流、知识库等）。",
+                        "en_us": "DeepSeek-R1 functionCall version, which supports calling various Kyber Tech tools (plugins, workflows, knowledge bases, etc.) in Single-Agent mode."
                     },
                     "output_tokens": 4096,
                     "max_tokens": 8192
@@ -5409,8 +5409,8 @@
                 "display_info": {
                     "name": "DeepSeek-V3·工具调用",
                     "description": {
-                        "zh_cn": "V3 functionCall 版本，支持在Single-Agent模式下调用各类扣子工具（插件、工作流、知识库等）。",
-                        "en_us": "DeepSeek-V3 functionCall version, which supports calling various Coze tools (plugins, workflows, knowledge bases, etc.) in Single-Agent mode."
+                        "zh_cn": "V3 functionCall 版本，支持在Single-Agent模式下调用各类Kyber Tech 工具（插件、工作流、知识库等）。",
+                        "en_us": "DeepSeek-V3 functionCall version, which supports calling various Kyber Tech tools (plugins, workflows, knowledge bases, etc.) in Single-Agent mode."
                     },
                     "output_tokens": 4096,
                     "max_tokens": 65536

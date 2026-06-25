@@ -353,8 +353,8 @@ func (h *httpCallImpl) injectOAuthAccessToken(ctx context.Context, httpReq *http
 }
 
 var authCodeInvalidTokenErrMsg = map[i18n.Locale]string{
-	i18n.LocaleZH: "%s 插件需要授权使用。授权后即代表你同意与扣子中你所选择的 AI 模型分享数据。请[点击这里](%s)进行授权。",
-	i18n.LocaleEN: "The '%s' plugin requires authorization. By authorizing, you agree to share data with the AI model you selected in Coze. Please [click here](%s) to authorize.",
+	i18n.LocaleZH: "%s 插件需要授权使用。授权后即代表你同意与Kyber Tech 中你所选择的 AI 模型分享数据。请[点击这里](%s)进行授权。",
+	i18n.LocaleEN: "The '%s' plugin requires authorization. By authorizing, you agree to share data with the AI model you selected in Kyber Tech. Please [click here](%s) to authorize.",
 }
 
 func (h *httpCallImpl) buildHTTPRequestHeader(ctx context.Context, args *InvocationArgs) (http.Header, error) {

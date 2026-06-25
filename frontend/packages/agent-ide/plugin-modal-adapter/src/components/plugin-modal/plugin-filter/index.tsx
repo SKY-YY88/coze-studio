@@ -26,7 +26,7 @@ import {
   PluginFilterType,
   From,
   getDefaultPluginCategory,
-} from '@coze-agent-ide/plugin-shared';
+} from '@kyber-agent-ide/plugin-shared';
 
 import s from './plugin-filter.module.less';
 

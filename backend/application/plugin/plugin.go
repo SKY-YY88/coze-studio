@@ -203,7 +203,7 @@ func (p *PluginApplicationService) buildProductMetaInfo(ctx context.Context, plu
 		Status:      productCommon.ProductStatus_Listed,
 		ListedAt:    time.Now().Unix(),
 		UserInfo: &productCommon.UserInfo{
-			Name: "Coze Official",
+			Name: "Kyber Official",
 		},
 	}, nil
 }
@@ -348,9 +348,9 @@ func convertPluginToProductInfo(plugin *entity.PluginInfo) *productAPI.ProductIn
 			UserInfo: &productCommon.UserInfo{
 				Name: func() string {
 					if isOfficial {
-						return "Coze Official"
+						return "Kyber Official"
 					}
-					return "Coze Community"
+					return "Kyber Community"
 				}(),
 			},
 		},

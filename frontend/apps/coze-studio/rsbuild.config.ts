@@ -42,7 +42,7 @@ const mergedConfig = defineConfig({
     ],
   },
   html: {
-    title: '扣子 Studio',
+    title: 'Kyber Tech',
     favicon: './assets/favicon.png',
     template: './index.html',
     crossorigin: 'anonymous',

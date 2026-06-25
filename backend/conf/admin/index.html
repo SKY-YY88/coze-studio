@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coze Studio 管理后台</title>
+    <title>Kyber Studio 管理后台</title>
     <style>
         * {
             margin: 0;
@@ -420,7 +420,7 @@
                             <rect x="14" y="14" width="7" height="7" rx="1" fill="#4A90E2"/>
                         </svg>
                     </div>
-                    <span class="logo-text">Coze Studio</span>
+                    <span class="logo-text">Kyber Studio</span>
                 </div>
             </div>
             
@@ -534,9 +534,9 @@
                 'basic.loading': '正在加载配置...',
                 'basic.label.admin_emails': '管理员邮箱',
                 'basic.placeholder.email_input': '输入邮箱，按回车添加',
-                'basic.placeholder.coze_api_token': '输入您的 Coze API Token',
-                'basic.help.coze_api_token_apply': '前往此链接申请 Coze API Token',
-                'basic.label.enable_coze_saas': '启用 Coze SaaS 插件',
+                'basic.placeholder.coze_api_token': '输入您的 Kyber API Token',
+                'basic.help.coze_api_token_apply': '前往此链接申请 Kyber API Token',
+                'basic.label.enable_coze_saas': '启用 Kyber SaaS 插件',
                 'basic.label.disable_user_registration': '禁止用户注册',
                 'basic.label.whitelist_emails': '允许注册的白名单邮箱',
                 'basic.help.whitelist': '当禁止用户注册时，只有白名单中的邮箱才能注册',
@@ -738,9 +738,9 @@
                 'basic.loading': 'Loading configuration...',
                 'basic.label.admin_emails': 'Admin Emails',
                 'basic.placeholder.email_input': 'Type email, press Enter to add',
-                'basic.placeholder.coze_api_token': 'Enter your Coze API Token',
-                'basic.help.coze_api_token_apply': 'Apply for a Coze API Token here',
-                'basic.label.enable_coze_saas': 'Enable Coze SaaS plugin',
+                'basic.placeholder.coze_api_token': 'Enter your Kyber API Token',
+                'basic.help.coze_api_token_apply': 'Apply for a Kyber API Token here',
+                'basic.label.enable_coze_saas': 'Enable Kyber SaaS plugin',
                 'basic.label.disable_user_registration': 'Disable user registration',
                 'basic.label.whitelist_emails': 'Whitelist emails allowed to register',
                 'basic.help.whitelist': 'When registration is disabled, only whitelisted emails can register.',
@@ -1409,10 +1409,10 @@
 
       <div class="registration-config-group plugin-config-group">
         <div class="form-group">
-          <label class="form-label">Coze API Token</label>
+          <label class="form-label">Kyber API Token</label>
           <input type="password" id="cozeApiToken" class="form-input" placeholder="${t('basic.placeholder.coze_api_token')}">
           <div style="margin-top:8px;font-size:12px;">
-            <a href="https://www.coze.cn/open/oauth/pats" target="_blank" rel="noopener noreferrer" style="color:#2980b9;text-decoration:none;">${t('basic.help.coze_api_token_apply')}</a>
+            <a href="https://kyber.local/open/oauth/pats" target="_blank" rel="noopener noreferrer" style="color:#2980b9;text-decoration:none;">${t('basic.help.coze_api_token_apply')}</a>
           </div>
         </div>
 
@@ -1423,8 +1423,8 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label">Coze SaaS API Base URL</label>
-          <input type="text" id="cozeSaasApiBaseUrl" class="form-input" placeholder="https://api.coze.cn" />
+          <label class="form-label">Kyber SaaS API Base URL</label>
+          <input type="text" id="cozeSaasApiBaseUrl" class="form-input" placeholder="https://api.kyber.local" />
         </div>
       </div>
 
@@ -1696,14 +1696,14 @@
             // 管理员邮箱
             setEmailTags(cfg.admin_emails || '');
 
-            // 插件配置：Coze API Token + SaaS 相关
+            // 插件配置：Kyber Tech API Token + SaaS 相关
             const pluginCfg = cfg.plugin_configuration || {};
             const cozeEl = document.getElementById('cozeApiToken');
             if (cozeEl) cozeEl.value = pluginCfg.coze_api_token || cfg.coze_api_token || '';
             const saasEnabledEl = document.getElementById('cozeSaasPluginEnabled');
             if (saasEnabledEl) saasEnabledEl.checked = (pluginCfg.coze_saas_plugin_enabled === true || pluginCfg.coze_saas_plugin_enabled === 'true');
             const saasBaseUrlEl = document.getElementById('cozeSaasApiBaseUrl');
-            if (saasBaseUrlEl) saasBaseUrlEl.value = pluginCfg.coze_saas_api_base_url || 'https://api.coze.cn';
+            if (saasBaseUrlEl) saasBaseUrlEl.value = pluginCfg.coze_saas_api_base_url || 'https://api.kyber.local';
 
             // 禁止用户注册与白名单
             const disableReg = cfg.disable_user_registration === true || cfg.disable_user_registration === 'true';
@@ -1744,7 +1744,7 @@
             const cozeApiToken = (document.getElementById('cozeApiToken')?.value || '').trim();
             const cozeSaasPluginEnabled = !!(document.getElementById('cozeSaasPluginEnabled')?.checked);
             const cozeSaasApiBaseUrlRaw = (document.getElementById('cozeSaasApiBaseUrl')?.value || '');
-            const cozeSaasApiBaseUrl = (cozeSaasApiBaseUrlRaw ? cozeSaasApiBaseUrlRaw : 'https://api.coze.cn').replace(/`/g, '').trim();
+            const cozeSaasApiBaseUrl = (cozeSaasApiBaseUrlRaw ? cozeSaasApiBaseUrlRaw : 'https://api.kyber.local').replace(/`/g, '').trim();
 
             const sAllowEnv = (document.getElementById('allowEnv')?.value || '').trim();
             const sAllowRead = (document.getElementById('allowRead')?.value || '').trim();
@@ -3436,7 +3436,7 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'coze-studio-config.json';
+            a.download = 'kyber-studio-config.json';
             a.click();
             URL.revokeObjectURL(url);
             
@@ -3464,7 +3464,7 @@
                         <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
                             <h3 style="color: #667eea; margin-top: 0;">${t('help.support.title')}</h3>
                             <p>${t('help.support.contact')}</p>
-                            <p>${t('help.support.email', { email: 'support@coze-studio.com' })}</p>
+                            <p>${t('help.support.email', { email: 'support@kyber-studio.local' })}</p>
                             <p>${t('help.support.phone', { phone: '400-123-4567' })}</p>
                         </div>
                     </div>
